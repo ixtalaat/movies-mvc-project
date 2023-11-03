@@ -1,0 +1,18 @@
+﻿@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+            Managment
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li class="nav-link">
+                <a class="dropdown-item" asp-controller="Genre" asp-action="Index">Genres</a>
+                <a class="dropdown-item" asp-controller="Movie" asp-action="Index">Movies</a>
+                <a class="dropdown-item" asp-controller="Team" asp-action="Index">Team</a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+        </ul>
+    </li>
+}

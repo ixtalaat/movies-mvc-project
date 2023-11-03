@@ -1,0 +1,37 @@
+﻿@model List<Movie>
+<section class="movie-area movie-bg" data-background="/assets/img/bg/movie_bg.jpg" style='background-image: url("/assets/img/bg/movie_bg.jpg");'>
+    <div class="container">
+        <div class="row tr-movie-active">  
+            @foreach (var item in Model)
+            {
+
+                <div class="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer _@item.GenreId">
+                        <div class="movie-item movie-item-three mb-50">
+                            <div class="movie-poster">
+                                <img src="@item.Poster" alt="" style="height: 400px; width: 100%;">
+                                <ul class="overlay-btn">
+                                    <li><a href="@item.Trailer" class="popup-video btn">Watch Now</a></li>
+                                    <li><a href="/home/details/@item.Id" class="btn">Details</a></li>
+                                </ul>   
+                            </div>
+                            <div class="movie-content">
+                                <div class="top">
+                                    <h5 class="title"><a href="#">@item.Name</a></h5>
+                                    <span class="date">@item.DateShow</span>
+                                </div>
+                                <div class="bottom">
+                                    <ul>
+                                        <li><span class="quality">hd</span></li>
+                                        <li>
+                                            <span class="duration"><i class="far fa-clock"></i>@item.Runtime</span>
+                                            <span class="rating"><i class="fas fa-thumbs-up"></i>@item.Rate</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            }
+        </div>  
+    </div>  
+</section>

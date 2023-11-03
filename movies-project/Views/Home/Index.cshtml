@@ -1,0 +1,178 @@
+﻿
+@model List<Movie>
+<!-- slider-area -->
+<section class="slider-area slider-bg" data-background="/assets/img/banner/home-banner.jpg" style='background-image: url("/assets/img/banner/home-banner.jpg");'>
+                <div class="slider-active">
+                    @foreach (var item in (List<Movie>)ViewBag.NewMovies)
+                    {
+                        <div class="slider-item">
+                            <div class="container">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 order-0 order-lg-2">
+                                        <div class="slider-img text-center text-lg-right" data-animation="fadeInRight" data-delay="1s">
+                                            <img src="@item.Poster" alt="" style="width:700px; height:600px;">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="banner-content">
+                                             <h6 class="sub-title" data-animation="fadeInUp" data-delay=".2s">@item.Name</h6>
+                                            <h2 class="title" data-animation="fadeInUp" data-delay=".4s">Unlimited <span>Movie</span>, & More.</h2>
+                                            <div class="banner-meta" data-animation="fadeInUp" data-delay=".6s">
+                                                <ul>
+                                                    <li class="quality">
+                                                        <span>hd</span>
+                                                    </li>
+                                                    @foreach (var genre in (List<Genre>)ViewBag.Genres)
+                                                    {
+                                                        if(genre.Id == item.GenreId)
+                                                        {
+                                                            <li class="category">
+                                                                <a href="#">@genre.Name</a>
+                                                            </li>
+                                                            break;
+                                                        }
+                                                        
+                                                    }
+                                                    <li class="release-time">
+                                                        <span><i class="far fa-calendar-alt"></i> @item.DateShow</span>
+                                                        <span><i class="far fa-clock"></i> @item.Runtime</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <a href="@item.Trailer" class="banner-btn btn popup-video" data-animation="fadeInUp" data-delay=".8s"><i class="fas fa-play"></i> Watch Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </section>
+             
+<!--Genres area-->
+            <section class="pricing-area pricing-bg" data-background="/assets/img/bg/pricing_bg.jpg" style='background-image: url("/assets/img/bg/pricing_bg.jpg");'>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="section-title title-style-three text-center mb-70">
+                                <h2 class="title">Genres</h2>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="row gy-4">
+                    @foreach (var item in (List<Genre>)ViewBag.Genres)
+                    {
+
+                        <div class="pricing-box-wrap col">
+                            <div class="row justify-content-center">
+                                    <div class="pricing-box-item mb-30">
+                                        <div class="pricing-top">
+                                            <div class="price">
+                                                <a href="/Home/Movie/@item.Id" style="color: black;">
+                                                    @item.Name</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    }
+                    </div>
+                </div>
+            </section>
+<!--Genres area end-->
+<!-- top-rated-movie -->
+            <section class="top-rated-movie tr-movie-bg2" data-background="/assets/img/bg/tr_movies_bg.jpg" style='background-image: url("/assets/img/bg/tr_movies_bg.jpg");'>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="section-title title-style-three text-center mb-70">
+                                <span class="sub-title">top rated movies</span>
+                                <h2 class="title">Top Online Shows Watch</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row movie-item-row">
+                        @foreach (var item in (List<Movie>)ViewBag.TopMovies)
+                        {
+                            <div class="custom-col-">
+                            <div class="movie-item movie-item-two">
+                                <div class="movie-poster">
+                                    <img src="@item.Poster" alt="" style="width:195px; height:285px;">
+                                    <ul class="overlay-btn">
+                                        <li><a href="@item.Trailer" class="popup-video btn">Watch Now</a></li>
+                                        <li><a asp-action="Details" asp-route-id="@item.Id" class="btn">Details</a></li>
+                                    </ul>
+                                </div>
+                                <div class="movie-content">
+                                    <div class="rating">
+                                        @for (int i = 0; i < Math.Round((float)(@item.Rate??0)/2); i++)
+                                        {
+                                            <i class="fas fa-star"></i>
+                                        } 
+                                    </div>
+                                    <h5 class="title"><a asp-action="Details" asp-route-id="@item.Id">@item.Name</a></h5>
+                                    @foreach (var genre in (List<Genre>)ViewBag.Genres)
+                                    {
+                                        if(genre.Id == item.GenreId)
+                                        {
+                                            <span class="rel">@genre.Name</span>
+                                            break;
+                                        }
+                                                        
+                                    }
+                                    <div class="movie-content-bottom">
+                                        <ul>
+                                            <li class="tag">
+                                                <a href="#">HD</a>
+                                                <a href="#">English</a>
+                                            </li>
+                                            <li>
+                                                <span class="like"><i class="fas fa-thumbs-up"></i> @item.Rate</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                       
+                    <div class="tr-movie-btn text-center mt-25">
+                        <a href="/home/movies" class="btn">BROWSE ALL MOVIES</a>
+                    </div>
+                </div>
+                <!-- testimonial-area -->
+                <div class="gallery-area position-relative" style="margin: 10px;">
+                    <h2 style="text-align:center; font-size:3em; margin:0 0 50px 0">Testimonial</h2>
+                    <div class="gallery-bg"></div>
+                    <div class="container-fluid p-0 fix">
+                        <div class="row gallery-active" style="margin: auto auto">
+                            @foreach (var item in (List<Review>)ViewBag.Reviews)
+                            {
+                                <div class="col-12">
+                                    <div class="gallery-item">
+                                        <div class="single-comment">
+                                            <div class="comment-text">      
+                                                <div class="comment-avatar-info" style="margin: 50px">
+                                        <img style="border-radius: 50%; margin:10px; width:131px; height:131px;" src="/assets/img/avatar.jpg" alt="img">
+                                                    <h5 style="font-size: 1.8em; color:yellow; text-align:left;">@item.Name</h5>
+                                                    <p style="font-size: 2em; margin-top: 20px">@item.Description</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+                        </div>
+                    </div>
+                    <div class="slider-nav"></div>
+                </div>
+                <!-- testimonial-area-end -->
+            </section>
+ <!-- top-rated-movie-end -->
+ 
+            
+
+                   
+            

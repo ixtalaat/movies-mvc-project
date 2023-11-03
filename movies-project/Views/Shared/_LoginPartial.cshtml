@@ -1,0 +1,24 @@
+﻿@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<ul class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="header-btn">
+        <a style="color:white; font-size:1.4em" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+    </li>
+    <li class="header-btn">
+        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button  type="submit" class="btn">Logout</button>
+        </form>
+    </li>
+}
+else
+{
+    <li class="header-btn">
+        <a class="btn" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        <a class="btn" asp-area="Identity" asp-page="/Account/Login">Login</a>
+    </li>
+    
+}
+</ul>

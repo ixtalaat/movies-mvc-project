@@ -1,0 +1,53 @@
+﻿@model List<Team>
+<!-- breadcrumb-area -->
+<section class="breadcrumb-area breadcrumb-bg" data-background="/assets/img/banner/team-banner.jpg" style='background-image: url("/assets/img/banner/team-banner.jpg");'>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="breadcrumb-content">    
+                                <h2 class="title">Our Team</h2>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="/home/index">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Team</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+<!-- breadcrumb-area-end -->
+
+<!-- team-area-end -->
+<section class="contact-area contact-bg" data-background="/assets/img/bg/contact_bg.jpg" style='background-image: url("/assets/img/bg/contact_bg.jpg");'>
+    <div class="container">
+            <div class="row" style="justify-content: center;">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4 col-sm-6">
+                        <div class="our-team">
+                            @if (@item.Photo != null)
+                            {
+                                <img src="@item.Photo" style="width:360px; height:360px;">
+                            }
+                            else
+                            {
+                                <img src="/4.jpg" style="width:360px; height:360px;">
+                            }
+                            <ul class="social">
+                                <li><a href="@item.Facebook" class="fab fa-facebook"></a></li>
+                                <li><a href="@item.Twitter" class="fab fa-twitter"></a></li>
+                                <li><a href="@item.Linkedin" class="fab fa-linkedin"></a></li>
+                            </ul>
+                            <div class="team-content">
+                                <h3 class="title">@item.Name</h3>
+                                <span class="post">@item.Description</span>
+                            </div>
+                        </div> 
+                    </div>
+               }
+            </div>
+    </div>
+</section>
+<!-- team-area-end -->

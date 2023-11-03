@@ -1,0 +1,57 @@
+﻿@model movies_project.Models.Team
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container">
+    <h1 style="color:#12151e; margin-top: 50px;">Details</h1>
+
+    <div>
+        <h4 style="color:#12151e;">Team</h4>
+        <hr />
+        <dl class="row">
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Photo)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Photo)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Facebook)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Facebook)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Twitter)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Twitter)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Linkedin)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Linkedin)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>
+
